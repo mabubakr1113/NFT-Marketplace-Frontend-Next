@@ -6,6 +6,7 @@ Moralis.Cloud.afterSave("ItemListed", async (request) => {
     logger.info("Found item!")
     const ActiveItem = Moralis.Object.extend("ActiveItem")
 
+    // In case of listing update, search for already listed ActiveItem and delete
     const query = new Moralis.Query(ActiveItem)
     query.equalTo("nftAddress", request.object.get("nftAddress"))
     query.equalTo("tokenId", request.object.get("tokenId"))
@@ -106,4 +107,3 @@ Moralis.Cloud.afterSave("ItemBought", async (request) => {
     }
   }
 })
-Footer
